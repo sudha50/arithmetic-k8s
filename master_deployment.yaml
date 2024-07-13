@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-master
+spec:
+  selector:
+    matchLabels:
+      app: ms-master
+  template:
+    metadata:
+      labels:
+        app: ms-master
+    spec:
+      containers:
+      - name: ms-master
+        image: sudha50/master-service:latest
+        imagePullPolicy: Never
+        envFrom:
+        - configMapRef:
+            name: envs-config
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: 50m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi

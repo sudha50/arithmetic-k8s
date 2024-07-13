@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-mul
+spec:
+  selector:
+    matchLabels:
+      app: ms-mul
+  template:
+    metadata:
+      labels:
+        app: ms-mul
+    spec:
+      containers:
+      - name: ms-mul
+        image: sudha50/mul-service:latest
+        resources:
+          requests:
+            cpu: 50m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 8001
