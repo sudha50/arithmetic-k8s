@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: envs-config
 data:
-  MUL_HOST: svc-mul
+  MUL_HOST: mul-svc
   MUL_PPRT: "8001"
-  SUM_HOST: svc-sum
+  SUM_HOST: sum-svc
   SUM_PORT: "8002"
