@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: envs-config
+  namespace: c2c-prod-namespace
 data:
   MUL_HOST: mul-svc
   MUL_PPRT: "8001"

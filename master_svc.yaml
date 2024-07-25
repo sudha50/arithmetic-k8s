@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: svc-master
+  namespace: c2c-prod-namespace
   labels:
     app: ms-master
 spec:
