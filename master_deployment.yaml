@@ -22,7 +22,8 @@ spec:
                 secretProviderClass: "c2c-prod-namespace"
       containers:
       - name: ms-master
-        image: sudha50/master-service:latest
+        # image: sudha50/master-service:latest
+        image: brlregistrity.azurecr.io/c2c-service:bb9ff47
         envFrom:
         - configMapRef:
             name: envs-config
