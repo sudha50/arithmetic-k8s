@@ -23,7 +23,7 @@ spec:
       containers:
       - name: ms-master
         # image: sudha50/master-service:latest
-        image: brlregistrity.azurecr.io/c2c-service:bb9ff47
+        image: brlregistrity.azurecr.io/c2c-service:cd4119e
         envFrom:
         - configMapRef:
             name: envs-config
