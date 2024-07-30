@@ -1,26 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ms-mul
+  name: ms-auth
   namespace: c2c-prod-namespace
 spec:
   selector:
     matchLabels:
-      app: ms-mul
+      app: ms-auth
   template:
     metadata:
       labels:
-        app: ms-mul
+        app: ms-auth
     spec:
+      serviceAccountName: "workload-identity-sa"
+      volumes:
+          - name: secrets-store01-inline
+            csi:
+              driver: secrets-store.csi.k8s.io
+              readOnly: true
+              volumeAttributes:
+                secretProviderClass: "c2c-prod-namespace"
       containers:
-      - name: ms-mul
-        image: sudha50/mul-service:latest
+      - name: ms-auth
+        image: brlregistrity.azurecr.io/c2c-auth:55f995b
         resources:
           requests:
-            cpu: 50m
-            memory: 50Mi
+            cpu: 80m
+            memory: 256Mi
           limits:
             cpu: 100m
-            memory: 100Mi
+            memory: 500Mi
+        volumeMounts:
+          - name: secrets-store01-inline
+            mountPath: "/mnt/secrets-store"
+            readOnly: true
         ports:
         - containerPort: 8001
