@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ms-master
+  name: ms-c2c-openai-sow-parser
   namespace: c2c-prod-namespace
 spec:
   selector:
     matchLabels:
-      app: ms-master
+      app: ms-c2c-openai-sow-parser
   template:
     metadata:
       labels:
-        app: ms-master
+        app: ms-c2c-openai-sow-parser
     spec:
       serviceAccountName: "workload-identity-sa"
       volumes:
@@ -21,14 +21,8 @@ spec:
               volumeAttributes:
                 secretProviderClass: "c2c-prod-namespace"
       containers:
-      - name: ms-master
-        # image: sudha50/master-service:latest
-        image: brlregistrity.azurecr.io/c2c-service:0bc1c74
-        envFrom:
-        - configMapRef:
-            name: envs-config
-        ports:
-        - containerPort: 8000
+      - name: ms-c2c-openai-sow-parser
+        image: brlregistrity.azurecr.io/c2c-openai-sow-parser:9375d22
         resources:
           requests:
             cpu: 95m
@@ -36,8 +30,9 @@ spec:
           limits:
             cpu: 100m
             memory: 500Mi
+        ports:
+        - containerPort: 8002
         volumeMounts:
           - name: secrets-store01-inline
             mountPath: "/mnt/secrets-store"
             readOnly: true
-      

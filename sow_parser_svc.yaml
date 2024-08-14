@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sum-svc
+  name: c2c-openai-sow-parser-svc
   namespace: c2c-prod-namespace
   labels:
-    app: ms-sum
+    app: ms-c2c-openai-sow-parser
 spec:
   selector:
-    app: ms-sum
+    app: ms-c2c-openai-sow-parser
   ports:
   - port: 8002
     protocol: TCP
